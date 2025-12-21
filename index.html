@@ -4,19 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>BUAT LIAA</title>
-    <meta name="language" content="zh-CN">
-    <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
-    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
-    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
-
     <style>
-        html,
-        body {
-            margin: 0px;
+        html, body {
+            margin: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
             background: #000;
+            overflow: hidden;
         }
 
         canvas {
@@ -33,6 +27,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             transition: 1s;
+            opacity: 0;
         }
 
         .namebox h1 {
@@ -52,34 +47,21 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            z-index: 10000;
-            transition: 0.3s;
+            z-index: 10000; /* pastikan tombol di atas canvas */
         }
 
         #startButton:hover {
             background-color: #ff2e84;
         }
     </style>
-
 </head>
 
 <body>
-    <canvas id="canvas-matrix" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
-    <canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas"></canvas>
-    <div class="overlay">
-        <div class="tabs">
-            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span
-                    class="tabs-label">Share</span></div>
+    <canvas id="canvas-matrix" style="z-index:8888"></canvas>
+    <canvas class="canvas" style="z-index:8889"></canvas>
+    <canvas id="pinkboard" style="z-index:8887"></canvas>
 
-            <div class="tabs-panels">
-                <ul class="tabs-panel commands">
-                </ul>
-            </div>
-        </div>
-    </div>
-    <canvas id="pinkboard" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
-
-    <div class="namebox" style="opacity: 0;">
+    <div class="namebox">
         <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
     </div>
 
@@ -102,12 +84,8 @@
         startButton.addEventListener("click", () => {
             audio.volume = 0.8;
             audio.play();
-
-            // Hilangkan tombol setelah diklik
-            startButton.style.display = "none";
-
-            // Tampilkan namebox jika ingin
-            namebox.style.opacity = 1;
+            startButton.style.display = "none"; // tombol hilang setelah diklik
+            namebox.style.opacity = 1; // namebox muncul
         });
     </script>
 </body>
