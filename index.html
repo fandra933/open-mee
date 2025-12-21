@@ -1,97 +1,87 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>Vela</title>
+    <meta charset="utf-8">
+    <title>OPEN ME <3</title>
+    <meta name="language" content="zh-CN">
+    <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
+    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
 
-<style>
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #000;
-}
+    <style>
+        html,
+        body {
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+        }
 
-canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
 
-/* teks */
-.namebox {
-  color: #ff5ba5;
-  position: absolute;
-  z-index: 9999;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: opacity 1s;
-}
-.namebox h1 {
-  margin: 0;
-  font-family: 'Comic Sans MS', cursive;
-}
+        .namebox {
+            color: #ff5ba5;
+            position: absolute;
+            z-index: 9999;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            transition: 1s;
+        }
 
-/* layar awal */
-#startScreen {
-  position: fixed;
-  inset: 0;
-  background: black;
-  color: white;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100000;
-  cursor: pointer;
-}
-</style>
+        .namebox h1 {
+            margin: 0 auto;
+        }
+    </style>
+
 </head>
 
 <body>
+    <canvas id="canvas-matrix" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
+    <!-- <canvas id="canvas" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas> -->
+    <canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas"></canvas>
+    <div class="overlay">
+        <div class="tabs">
+            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span
+                    class="tabs-label">Share</span></div>
 
-<!-- LAYAR AWAL -->
-<div id="startScreen">CLICK TO OPEN</div>
+            <div class="tabs-panels">
+                <ul class="tabs-panel commands">
+                </ul>
+            </div>
+        </div>
+    </div>
+    <canvas id="pinkboard" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
 
-<!-- CANVAS (WAJIB ADA) -->
-<canvas id="canvas-matrix" style="z-index:8888"></canvas>
-<canvas class="canvas" style="z-index:9999"></canvas>
-<canvas id="pinkboard" style="z-index:8888"></canvas>
-
-<!-- TEKS -->
-<div class="namebox">
-  <h1>Wuv U ❤️ Bao Bao</h1>
-</div>
-
-<!-- AUDIO -->
-<audio id="bgm" loop>
+    <script src="js/index.js"></script>
+    <script src="js/heart.js"></script>
+    <script src="js/matrix.js"></script>
+    <div class="namebox" style="opacity: 0;">
+        <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Wuv U&#10084;&#65039;Meysa Bau </h1>
+    </div>
+  
+  <audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SCRIPT ANIMASI (ASLI, JANGAN DIUBAH) -->
-<script src="js/index.js"></script>
-<script src="js/heart.js"></script>
-<script src="js/matrix.js"></script>
-
-<!-- KONTROL START -->
 <script>
-document.getElementById("startScreen").onclick = function () {
-  // mulai musik
-  document.getElementById("bgm").play();
-
-  // buka layar
-  this.style.display = "none";
-
-  // TUNGGU ANIMASI AWAL / COUNTDOWN
-  // ⬇️ GANTI ANGKA INI SESUAI DURASI COUNTDOWN KAMU
-  setTimeout(() => {
-    document.querySelector(".namebox").style.opacity = 1;
-  }, 6000); // 6 detik
-};
+  document.addEventListener("click", function () {
+    const audio = document.getElementById("bgm");
+    audio.volume = 0.8; // bisa diubah 0.1–1.0
+    audio.play();
+  });
 </script>
 
 </body>
+
 </html>
