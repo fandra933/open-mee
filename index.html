@@ -19,7 +19,7 @@ canvas {
   height: 100%;
 }
 
-/* teks nama */
+/* teks */
 .namebox {
   color: #ff5ba5;
   position: absolute;
@@ -27,10 +27,12 @@ canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: 1s;
+  opacity: 0;
+  transition: opacity 1s;
 }
 .namebox h1 {
   margin: 0;
+  font-family: 'Comic Sans MS', cursive;
 }
 
 /* layar awal */
@@ -51,17 +53,17 @@ canvas {
 
 <body>
 
-<!-- LAYAR KLIK -->
+<!-- LAYAR AWAL -->
 <div id="startScreen">CLICK TO OPEN</div>
 
-<!-- CANVAS ANIMASI (JANGAN DIHAPUS) -->
+<!-- CANVAS (WAJIB ADA) -->
 <canvas id="canvas-matrix" style="z-index:8888"></canvas>
 <canvas class="canvas" style="z-index:9999"></canvas>
 <canvas id="pinkboard" style="z-index:8888"></canvas>
 
 <!-- TEKS -->
-<div class="namebox" style="opacity:0;">
-  <h1 style="font-family:'Comic Sans MS', cursive;">Wuv U ❤️ Bao Bao</h1>
+<div class="namebox">
+  <h1>Wuv U ❤️ Bao Bao</h1>
 </div>
 
 <!-- AUDIO -->
@@ -69,19 +71,25 @@ canvas {
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- SCRIPT ANIMASI (ASLI KAMU) -->
+<!-- SCRIPT ANIMASI (ASLI, JANGAN DIUBAH) -->
 <script src="js/index.js"></script>
 <script src="js/heart.js"></script>
 <script src="js/matrix.js"></script>
 
-<!-- SCRIPT KLIK -->
+<!-- KONTROL START -->
 <script>
 document.getElementById("startScreen").onclick = function () {
+  // mulai musik
   document.getElementById("bgm").play();
+
+  // buka layar
   this.style.display = "none";
 
-  const name = document.querySelector(".namebox");
-  if (name) name.style.opacity = 1;
+  // TUNGGU ANIMASI AWAL / COUNTDOWN
+  // ⬇️ GANTI ANGKA INI SESUAI DURASI COUNTDOWN KAMU
+  setTimeout(() => {
+    document.querySelector(".namebox").style.opacity = 1;
+  }, 6000); // 6 detik
 };
 </script>
 
