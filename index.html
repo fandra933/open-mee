@@ -69,7 +69,17 @@
     <div class="namebox" style="opacity: 0;">
         <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
     </div>
+    <audio id="bgm" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
+    <script>
+    document.addEventListener("click", function () {
+    const audio = document.getElementById("bgm");
+    audio.volume = 0.8; // bisa diubah 0.1–1.0
+    audio.play();
+  });
+</script>
 </body>
 
 </html>
