@@ -3,7 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>OPEN ME <3</title>
+    <title>OPEN ME &lt;3</title>
+    <meta name="language" content="zh-CN">
+    <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
+    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
+    <link rel="icon" type="image/x-icon"
+        href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
 
     <style>
         html,
@@ -33,7 +38,6 @@
 
         .namebox h1 {
             margin: 0 auto;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
 
         /* TOMBOL MUSIK */
@@ -42,53 +46,70 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 100000;
-            padding: 12px 20px;
-            font-size: 16px;
+            z-index: 999999;
+            padding: 12px 22px;
             background: black;
             color: #ff5ba5;
             border: 2px solid #ff5ba5;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-size: 16px;
             cursor: pointer;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: "Comic Sans MS", cursive;
         }
     </style>
 </head>
 
 <body>
 
+    <!-- ===== CANVAS ASLI (JANGAN DIUBAH) ===== -->
     <canvas id="canvas-matrix" style="z-index:8888"></canvas>
     <canvas class="canvas" style="z-index:9999"></canvas>
     <canvas id="pinkboard" style="z-index:8888"></canvas>
 
-    <div class="namebox" style="opacity: 0;">
-        <h1>Wuv U❤️Meysa Bau</h1>
+    <div class="overlay">
+        <div class="tabs">
+            <div class="tabs-labels">
+                <span class="tabs-label">Commands</span>
+                <span class="tabs-label">Info</span>
+                <span class="tabs-label">Share</span>
+            </div>
+            <div class="tabs-panels">
+                <ul class="tabs-panel commands"></ul>
+            </div>
+        </div>
     </div>
 
-    <!-- TOMBOL -->
+    <div class="namebox" style="opacity:0;">
+        <h1 style="font-family:'Comic Sans MS', cursive;">
+            Wuv U&#10084;&#65039; Meysa Bau
+        </h1>
+    </div>
+
+    <!-- ===== TOMBOL MUSIK ===== -->
     <button id="musicBtn">Klik dulu Meysa ❤️</button>
 
-    <!-- AUDIO -->
+    <!-- ===== AUDIO ===== -->
     <audio id="bgm" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- SCRIPT ANIMASI (ASLI, JANGAN DIUBAH) -->
+    <!-- ===== SCRIPT ASLI (JANGAN DIPINDAH) ===== -->
     <script src="js/index.js"></script>
     <script src="js/heart.js"></script>
     <script src="js/matrix.js"></script>
 
-    <!-- SCRIPT MUSIK -->
+    <!-- ===== SCRIPT TOMBOL (TAMBAHAN DOANG) ===== -->
     <script>
         const btn = document.getElementById("musicBtn");
         const audio = document.getElementById("bgm");
 
-        btn.addEventListener("click", function () {
+        btn.addEventListener("click", () => {
             audio.volume = 0.8;
             audio.play();
-            btn.remove(); // tombol hilang
+            btn.style.display = "none";
         });
     </script>
 
 </body>
+
 </html>
