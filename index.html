@@ -13,10 +13,8 @@
             overflow: hidden;
         }
 
-        canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+        canvas, .namebox, .overlay {
+            display: none; /* sembunyikan semua awalnya */
         }
 
         .namebox {
@@ -47,7 +45,7 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            z-index: 10000; /* pastikan tombol di atas canvas */
+            z-index: 10000;
         }
 
         #startButton:hover {
@@ -57,16 +55,27 @@
 </head>
 
 <body>
+
+    <!-- Tombol awal -->
+    <button id="startButton">Click Me</button>
+
+    <!-- Canvas & elemen animasi -->
     <canvas id="canvas-matrix" style="z-index:8888"></canvas>
     <canvas class="canvas" style="z-index:8889"></canvas>
     <canvas id="pinkboard" style="z-index:8887"></canvas>
 
+    <div class="overlay">
+        <div class="tabs">
+            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div>
+            <div class="tabs-panels">
+                <ul class="tabs-panel commands"></ul>
+            </div>
+        </div>
+    </div>
+
     <div class="namebox">
         <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
     </div>
-
-    <!-- Tombol Click Me -->
-    <button id="startButton">Click Me</button>
 
     <audio id="bgm" loop>
         <source src="music.mp3" type="audio/mpeg">
@@ -79,13 +88,22 @@
     <script>
         const startButton = document.getElementById("startButton");
         const audio = document.getElementById("bgm");
-        const namebox = document.querySelector(".namebox");
 
         startButton.addEventListener("click", () => {
+            // mainkan musik
             audio.volume = 0.8;
             audio.play();
-            startButton.style.display = "none"; // tombol hilang setelah diklik
-            namebox.style.opacity = 1; // namebox muncul
+
+            // sembunyikan tombol
+            startButton.style.display = "none";
+
+            // tampilkan canvas dan elemen lain
+            document.querySelectorAll('canvas, .overlay, .namebox').forEach(el => {
+                el.style.display = "block";
+            });
+
+            // tampilkan namebox
+            document.querySelector('.namebox').style.opacity = 1;
         });
     </script>
 </body>
