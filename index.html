@@ -1,112 +1,61 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>BUAT LIAA</title>
-    <style>
-        html, body {
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #000;
-        }
+<meta charset="utf-8">
+<title>Vela</title>
 
-        canvas {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+<style>
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:black;
+  overflow:hidden;
+}
 
-        .namebox {
-            color: #ff5ba5;
-            position: absolute;
-            z-index: 9999;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-
-        .namebox h1 {
-            margin: 0 auto;
-        }
-
-        /* Overlay awal */
-        #startOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-
-        #startButton {
-            padding: 20px 50px;
-            font-size: 2rem;
-            background: #ff5ba5;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        #startButton:hover {
-            background: #ff2e84;
-        }
-    </style>
+/* layar awal */
+#start {
+  position:fixed;
+  inset:0;
+  background:black;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  cursor:pointer;
+  z-index:99999;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Overlay tombol awal -->
-    <div id="startOverlay">
-        <button id="startButton">Click Me</button>
-    </div>
+<!-- LAYAR KLIK -->
+<div id="start">CLICK TO OPEN</div>
 
-    <!-- Elemen utama tetap ada tapi animasinya belum dijalankan -->
-    <canvas id="canvas-matrix" style="z-index:8888"></canvas>
-    <canvas class="canvas" style="z-index:9999"></canvas>
-    <canvas id="pinkboard" style="z-index:8887"></canvas>
-    <div class="overlay"></div>
-    <div class="namebox">
-        <h1>Love U❤️Liaa</h1>
-    </div>
-    <audio id="bgm" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+<!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    <script>
-        const startButton = document.getElementById("startButton");
-        const startOverlay = document.getElementById("startOverlay");
+<script>
+document.getElementById("start").onclick = function () {
 
-        startButton.addEventListener("click", () => {
-            // hilangkan overlay tombol
-            startOverlay.style.display = "none";
+  // musik jalan
+  document.getElementById("bgm").play();
 
-            // mainkan musik
-            const audio = document.getElementById("bgm");
-            audio.volume = 0.8;
-            audio.play();
+  // load animasi SETELAH klik
+  ["js/index.js","js/heart.js","js/matrix.js"].forEach(f=>{
+    let s=document.createElement("script");
+    s.src=f;
+    document.body.appendChild(s);
+  });
 
-            // tampilkan namebox
-            document.querySelector('.namebox').style.opacity = 1;
+  // hapus layar awal
+  this.remove();
+};
+</script>
 
-            // muat animasi JS setelah tombol diklik
-            const scripts = ['js/index.js', 'js/heart.js', 'js/matrix.js'];
-            scripts.forEach(src => {
-                const script = document.createElement('script');
-                script.src = src;
-                document.body.appendChild(script);
-            });
-        });
-    </script>
 </body>
-
 </html>
