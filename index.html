@@ -13,8 +13,10 @@
             overflow: hidden;
         }
 
-        canvas, .namebox, .overlay {
-            display: none; /* sembunyikan semua awalnya */
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
 
         .namebox {
@@ -32,12 +34,21 @@
             margin: 0 auto;
         }
 
-        /* Tombol Click Me */
-        #startButton {
+        /* Overlay awal dengan tombol */
+        #introOverlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #startButton {
             padding: 20px 40px;
             font-size: 2rem;
             color: #fff;
@@ -45,7 +56,6 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            z-index: 10000;
         }
 
         #startButton:hover {
@@ -56,10 +66,7 @@
 
 <body>
 
-    <!-- Tombol awal -->
-    <button id="startButton">Click Me</button>
-
-    <!-- Canvas & elemen animasi -->
+    <!-- Canvas animasi tetap ada -->
     <canvas id="canvas-matrix" style="z-index:8888"></canvas>
     <canvas class="canvas" style="z-index:8889"></canvas>
     <canvas id="pinkboard" style="z-index:8887"></canvas>
@@ -77,6 +84,11 @@
         <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
     </div>
 
+    <!-- Overlay awal dengan tombol -->
+    <div id="introOverlay">
+        <button id="startButton">Click Me</button>
+    </div>
+
     <audio id="bgm" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
@@ -87,25 +99,23 @@
 
     <script>
         const startButton = document.getElementById("startButton");
+        const introOverlay = document.getElementById("introOverlay");
         const audio = document.getElementById("bgm");
+        const namebox = document.querySelector(".namebox");
 
         startButton.addEventListener("click", () => {
             // mainkan musik
             audio.volume = 0.8;
             audio.play();
 
-            // sembunyikan tombol
-            startButton.style.display = "none";
-
-            // tampilkan canvas dan elemen lain
-            document.querySelectorAll('canvas, .overlay, .namebox').forEach(el => {
-                el.style.display = "block";
-            });
+            // sembunyikan overlay
+            introOverlay.style.display = "none";
 
             // tampilkan namebox
-            document.querySelector('.namebox').style.opacity = 1;
+            namebox.style.opacity = 1;
         });
     </script>
+
 </body>
 
 </html>
