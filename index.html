@@ -4,13 +4,19 @@
 <head>
     <meta charset="utf-8">
     <title>BUAT LIAA</title>
+    <meta name="language" content="zh-CN">
+    <meta name="github" content="https://github.com/sun0225SUN/Awesome-Love-Code">
+    <meta name="describe" content="收集不易，您的star是我坚持的动力，同时也欢迎各位PR哦! ">
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/sun0225SUN/photos/img/20210715233345.png">
+
     <style>
-        html, body {
-            margin: 0;
+        html,
+        body {
+            margin: 0px;
             width: 100%;
             height: 100%;
-            background: #000;
             overflow: hidden;
+            background: #000;
         }
 
         canvas {
@@ -25,97 +31,56 @@
             z-index: 9999;
             top: 50%;
             left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
             transition: 1s;
-            opacity: 0;
         }
 
         .namebox h1 {
             margin: 0 auto;
         }
-
-        /* Overlay awal dengan tombol */
-        #introOverlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #startButton {
-            padding: 20px 40px;
-            font-size: 2rem;
-            color: #fff;
-            background-color: #ff5ba5;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        #startButton:hover {
-            background-color: #ff2e84;
-        }
     </style>
+
 </head>
 
 <body>
-
-    <!-- Canvas animasi tetap ada -->
-    <canvas id="canvas-matrix" style="z-index:8888"></canvas>
-    <canvas class="canvas" style="z-index:8889"></canvas>
-    <canvas id="pinkboard" style="z-index:8887"></canvas>
-
+    <canvas id="canvas-matrix" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
+    <!-- <canvas id="canvas" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas> -->
+    <canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas"></canvas>
     <div class="overlay">
         <div class="tabs">
-            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div>
+            <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span
+                    class="tabs-label">Share</span></div>
+
             <div class="tabs-panels">
-                <ul class="tabs-panel commands"></ul>
+                <ul class="tabs-panel commands">
+                </ul>
             </div>
         </div>
     </div>
-
-    <div class="namebox">
-        <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
-    </div>
-
-    <!-- Overlay awal dengan tombol -->
-    <div id="introOverlay">
-        <button id="startButton">Click Me</button>
-    </div>
-
-    <audio id="bgm" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+    <canvas id="pinkboard" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
 
     <script src="js/index.js"></script>
     <script src="js/heart.js"></script>
     <script src="js/matrix.js"></script>
+    <div class="namebox" style="opacity: 0;">
+        <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
+    </div>
+    
+    <audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        const startButton = document.getElementById("startButton");
-        const introOverlay = document.getElementById("introOverlay");
-        const audio = document.getElementById("bgm");
-        const namebox = document.querySelector(".namebox");
-
-        startButton.addEventListener("click", () => {
-            // mainkan musik
-            audio.volume = 0.8;
-            audio.play();
-
-            // sembunyikan overlay
-            introOverlay.style.display = "none";
-
-            // tampilkan namebox
-            namebox.style.opacity = 1;
-        });
-    </script>
-
+    document.addEventListener("click", function () {
+    const audio = document.getElementById("bgm");
+    audio.volume = 0.8; // bisa diubah 0.1–1.0
+    audio.play();
+  });
+</script>
 </body>
 
 </html>
