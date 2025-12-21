@@ -31,10 +31,6 @@
             z-index: 9999;
             top: 50%;
             left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
             transition: 1s;
         }
@@ -42,13 +38,33 @@
         .namebox h1 {
             margin: 0 auto;
         }
+
+        /* Tombol Click Me */
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 2rem;
+            color: #fff;
+            background-color: #ff5ba5;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 10000;
+            transition: 0.3s;
+        }
+
+        #startButton:hover {
+            background-color: #ff2e84;
+        }
     </style>
 
 </head>
 
 <body>
     <canvas id="canvas-matrix" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
-    <!-- <canvas id="canvas" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas> -->
     <canvas style="position:absolute;width:100%;height:100%;z-index:9999" class="canvas"></canvas>
     <div class="overlay">
         <div class="tabs">
@@ -63,24 +79,37 @@
     </div>
     <canvas id="pinkboard" style="position:absolute;width:100%;height:100%;z-index:8888"></canvas>
 
-    <script src="js/index.js"></script>
-    <script src="js/heart.js"></script>
-    <script src="js/matrix.js"></script>
     <div class="namebox" style="opacity: 0;">
         <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Love U&#10084;&#65039;Liaa</h1>
     </div>
-    
+
+    <!-- Tombol Click Me -->
+    <button id="startButton">Click Me</button>
+
     <audio id="bgm" loop>
-    <source src="music.mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="js/index.js"></script>
+    <script src="js/heart.js"></script>
+    <script src="js/matrix.js"></script>
+
     <script>
-    document.addEventListener("click", function () {
-    const audio = document.getElementById("bgm");
-    audio.volume = 0.8; // bisa diubah 0.1–1.0
-    audio.play();
-  });
-</script>
+        const startButton = document.getElementById("startButton");
+        const audio = document.getElementById("bgm");
+        const namebox = document.querySelector(".namebox");
+
+        startButton.addEventListener("click", () => {
+            audio.volume = 0.8;
+            audio.play();
+
+            // Hilangkan tombol setelah diklik
+            startButton.style.display = "none";
+
+            // Tampilkan namebox jika ingin
+            namebox.style.opacity = 1;
+        });
+    </script>
 </body>
 
 </html>
