@@ -5,26 +5,46 @@
 <title>Vela</title>
 
 <style>
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  background:black;
-  overflow:hidden;
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* teks nama */
+.namebox {
+  color: #ff5ba5;
+  position: absolute;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+}
+.namebox h1 {
+  margin: 0;
 }
 
 /* layar awal */
-#start {
-  position:fixed;
-  inset:0;
-  background:black;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:28px;
-  cursor:pointer;
-  z-index:99999;
+#startScreen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -32,28 +52,36 @@ html,body{
 <body>
 
 <!-- LAYAR KLIK -->
-<div id="start">CLICK TO OPEN</div>
+<div id="startScreen">CLICK TO OPEN</div>
+
+<!-- CANVAS ANIMASI (JANGAN DIHAPUS) -->
+<canvas id="canvas-matrix" style="z-index:8888"></canvas>
+<canvas class="canvas" style="z-index:9999"></canvas>
+<canvas id="pinkboard" style="z-index:8888"></canvas>
+
+<!-- TEKS -->
+<div class="namebox" style="opacity:0;">
+  <h1 style="font-family:'Comic Sans MS', cursive;">Wuv U ❤️ Bao Bao</h1>
+</div>
 
 <!-- AUDIO -->
 <audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<!-- SCRIPT ANIMASI (ASLI KAMU) -->
+<script src="js/index.js"></script>
+<script src="js/heart.js"></script>
+<script src="js/matrix.js"></script>
+
+<!-- SCRIPT KLIK -->
 <script>
-document.getElementById("start").onclick = function () {
-
-  // musik jalan
+document.getElementById("startScreen").onclick = function () {
   document.getElementById("bgm").play();
+  this.style.display = "none";
 
-  // load animasi SETELAH klik
-  ["js/index.js","js/heart.js","js/matrix.js"].forEach(f=>{
-    let s=document.createElement("script");
-    s.src=f;
-    document.body.appendChild(s);
-  });
-
-  // hapus layar awal
-  this.remove();
+  const name = document.querySelector(".namebox");
+  if (name) name.style.opacity = 1;
 };
 </script>
 
